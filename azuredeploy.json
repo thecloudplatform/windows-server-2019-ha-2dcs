@@ -86,6 +86,8 @@
     }
   },
   "variables": {
+    "vhdStorageAccountName": "thedemoplatformstorage",
+    "storageAccountType": "Standard_LRS",
     "adPDCVMName": "DC1",
     "adBDCVMName": "DC2",
     "imagePublisher": "MicrosoftWindowsServer",
@@ -129,13 +131,13 @@
   },
   "resources": [
     {
-      "name": "[parameters('vhdStorageAccountName')]",
+      "name": "[variables('vhdStorageAccountName')]",
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2016-05-01",
       "location": "[resourceGroup().location]",
       "properties": {
       },
-      "sku":{"name":"[parameters('storageAccountType')]"},
+      "sku":{"name":"[variables('storageAccountType')]"},
       "kind":"Storage"
     },
     {
