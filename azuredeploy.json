@@ -75,7 +75,7 @@
       "metadata": {
         "description": "The location of resources, such as templates and DSC modules, that the template depends on"
       },
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/windows-server-2016-ha-2dcs"
+      "defaultValue": "https://raw.githubusercontent.com/thecloudplatform/windows-server-2016-ha-2dcs/master"
     },
     "_artifactsLocationSasToken": {
       "type": "securestring",
