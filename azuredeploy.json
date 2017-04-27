@@ -123,7 +123,7 @@
     "vnetwithDNSTemplateUri": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/vnet-with-dns-server.json', parameters('_artifactsLocationSasToken'))]",
     "configureADBDCTemplateUri": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/configureADBDC.json', parameters('_artifactsLocationSasToken'))]",
     "adPDCModulesURL": "[concat(parameters('_artifactsLocation'),'/DSC/CreateADPDC.zip', parameters('_artifactsLocationSasToken'))]",
-    "adPDCConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
+    "adPDCConfigurationFunction": "CreateADPDCv2.ps1\\CreateADPDC",
     "adBDCPreparationModulesURL": "[concat(parameters('_artifactsLocation'),'/DSC/PrepareADBDC.zip', parameters('_artifactsLocationSasToken'))]",
     "adBDCPreparationFunction": "PrepareADBDC.ps1\\PrepareADBDC",
     "adBDCConfigurationModulesURL": "[concat(parameters('_artifactsLocation'),'/DSC/ConfigureADBDC.zip', parameters('_artifactsLocationSasToken'))]",
