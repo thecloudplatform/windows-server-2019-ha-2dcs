@@ -29,6 +29,13 @@
             },
             "defaultValue": "thedemoplatform"
         },
+        "virtualNetworkName": {
+            "type": "string",
+            "metadata": {
+                "description": "The VNET of the network created"
+            },
+            "defaultValue": "The-Demo-Platform"
+        },
         "dnsPrefix": {
             "type": "string",
             "metadata": {
@@ -86,7 +93,6 @@
         }
     },
     "variables": {
-        "storageAccountType": "Standard_LRS",
         "adPDCVMName": "DC1",
         "adBDCVMName": "DC2",
         "imagePublisher": "MicrosoftWindowsServer",
@@ -99,7 +105,6 @@
         "adLBBE": "DCLBBE",
         "adPDCRDPNAT": "DC1RDP",
         "adBDCRDPNAT": "DC2RDP",
-        "virtualNetworkName": "The-Demo-Platform",
         "virtualNetworkAddressRange": "10.0.0.0/16",
         "adSubnetName": "DCSubnet",
         "adSubnet": "10.0.0.0/24",
@@ -107,7 +112,7 @@
         "adPDCNicIPAddress": "10.0.0.11",
         "adBDCNicName": "DC2Nic",
         "adBDCNicIPAddress": "10.0.0.12",
-        "adSubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('adSubnetName'))]",
+        "adSubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('adSubnetName'))]",
         "adLBName": "DCLoadBalancer",
         "adlbID": "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]",
         "adlbFEConfigID": "[concat(variables('adlbID'),'/frontendIPConfigurations/',variables('adLBFE'))]",
@@ -172,7 +177,7 @@
             "location": "[resourceGroup().location]",
             "properties": {},
             "sku": {
-                "name": "[variables('storageAccountType')]"
+                "name": "[parameters('storageAccountType')]"
             },
             "kind": "Storage"
         },
@@ -206,7 +211,7 @@
                 },
                 "parameters": {
                     "virtualNetworkName": {
-                        "value": "[variables('virtualNetworkName')]"
+                        "value": "[parameters('virtualNetworkName')]"
                     },
                     "virtualNetworkAddressRange": {
                         "value": "[variables('virtualNetworkAddressRange')]"
@@ -449,7 +454,7 @@
                 },
                 "parameters": {
                     "virtualNetworkName": {
-                        "value": "[variables('virtualNetworkName')]"
+                        "value": "[parameters('virtualNetworkName')]"
                     },
                     "virtualNetworkAddressRange": {
                         "value": "[variables('virtualNetworkAddressRange')]"
@@ -654,7 +659,7 @@
                 },
                 "parameters": {
                     "virtualNetworkName": {
-                        "value": "[variables('virtualNetworkName')]"
+                        "value": "[parameters('virtualNetworkName')]"
                     },
                     "virtualNetworkAddressRange": {
                         "value": "[variables('virtualNetworkAddressRange')]"
