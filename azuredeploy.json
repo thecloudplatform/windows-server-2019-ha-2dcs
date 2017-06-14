@@ -70,6 +70,13 @@
       },
       "defaultValue": "Standard_LRS"
     },
+    "virtualNetworkName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of network to be created"
+      },
+      "defaultValue": "The-Demo-Platform"
+    },
     "_artifactsLocation": {
       "type": "string",
       "metadata": {
@@ -77,17 +84,8 @@
       },
       "defaultValue": "https://raw.githubusercontent.com/thecloudplatform/windows-server-2016-ha-2dcs/master"
     },
-    "_artifactsLocationSasToken": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Auto-generated token to access _artifactsLocation"
-      },
-      "defaultValue": ""
-    }
   },
   "variables": {
-    "vhdStorageAccountName": "thedemoplatformstorage",
-    "storageAccountType": "Standard_LRS",
     "adPDCVMName": "DC1",
     "adBDCVMName": "DC2",
     "imagePublisher": "MicrosoftWindowsServer",
@@ -100,7 +98,6 @@
     "adLBBE": "DCLBBE",
     "adPDCRDPNAT": "DC1RDP",
     "adBDCRDPNAT": "DC2RDP",
-    "virtualNetworkName": "The-Demo-Platform",
     "virtualNetworkAddressRange": "10.0.0.0/16",
     "adSubnetName": "DCSubnet",
     "adSubnet": "10.0.0.0/24",
