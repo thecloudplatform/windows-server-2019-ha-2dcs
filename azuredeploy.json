@@ -86,7 +86,6 @@
     }
   },
   "variables": {
-    "vhdStorageAccountName": "thedemoplatformstorage",
     "storageAccountType": "Standard_LRS",
     "adPDCVMName": "DC1",
     "adBDCVMName": "DC2",
