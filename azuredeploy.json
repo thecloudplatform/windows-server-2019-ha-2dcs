@@ -105,7 +105,7 @@
         "adPDCNicIPAddress": "10.0.0.11",
         "adBDCNicName": "DC2Nic",
         "adBDCNicIPAddress": "10.0.0.12",
-        "adSubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameter('virtualNetworkName'), variables('adSubnetName'))]",
+        "adSubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('adSubnetName'))]",
         "adLBName": "DCLoadBalancer",
         "adlbID": "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]",
         "adlbFEConfigID": "[concat(variables('adlbID'),'/frontendIPConfigurations/',variables('adLBFE'))]",
