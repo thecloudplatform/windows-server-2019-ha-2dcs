@@ -67,15 +67,15 @@
         "storageAccountType": {
             "type": "string",
             "allowedValues": [
-                "Standard_LRS",
-                "Standard_GRS",
-                "Standard_RAGRS",
-                "Premium_LRS"
+                "StandardSSD_LRS",
+                "StandardSSD_ZRS",
+                "Premium_LRS",
+                "Premium_ZRS"
             ],
             "metadata": {
                 "description": "The type of the Storage Account created"
             },
-            "defaultValue": "Premium_LRS"
+            "defaultValue": "StandardSSD_LRS"
         },
         "_artifactsLocation": {
             "type": "string",
