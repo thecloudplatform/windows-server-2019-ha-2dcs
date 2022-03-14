@@ -416,7 +416,7 @@
                     "properties": {
                         "publisher": "Microsoft.Powershell",
                         "type": "DSC",
-                        "typeHandlerVersion": "2.19",
+                        "typeHandlerVersion": "2.21",
                         "autoUpgradeMinorVersion": true,
                         "settings": {
                             "ModulesUrl": "[variables('adPDCModulesURL')]",
@@ -594,7 +594,7 @@
             "properties": {
                 "publisher": "Microsoft.Powershell",
                 "type": "DSC",
-                "typeHandlerVersion": "2.19",
+                "typeHandlerVersion": "2.21",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
                     "ModulesUrl": "[variables('adBDCPreparationModulesURL')]",
