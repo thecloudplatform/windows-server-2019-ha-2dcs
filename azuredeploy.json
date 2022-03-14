@@ -64,19 +64,6 @@
             },
             "defaultValue": "testjaysamstorage"
         },
-        "storageAccountType": {
-            "type": "string",
-            "allowedValues": [
-                "StandardSSD_LRS",
-                "StandardSSD_ZRS",
-                "Premium_LRS",
-                "Premium_ZRS"
-            ],
-            "metadata": {
-                "description": "The type of the Storage Account created"
-            },
-            "defaultValue": "StandardSSD_LRS"
-        },
         "_artifactsLocation": {
             "type": "string",
             "metadata": {
@@ -375,27 +362,21 @@
                         "sku": "[variables('imageSKU')]",
                         "version": "latest"
                     },
-                    "osDisk": {
-                        "name": "osdisk",
-                        "vhd": {
-                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds0/','osdisk.vhd')]"
-                        },
-                        "caching": "ReadWrite",
-                        "createOption": "FromImage"
-                    },
-                    "dataDisks": [
-                        {
-                            "vhd": {
-                                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds0/', variables('adPDCDataDisk'),'-1.vhd')]"
-                            },
-                            "name": "[concat(variables('adPDCVMName'),'-data-disk1')]",
-                            "caching": "None",
-                            "diskSizeGB": "[variables('adDataDiskSize')]",
-                            "lun": 0,
-                            "createOption": "empty"
-                        }
-                    ]
-                },
+            "osDisk": {
+                "caching": "ReadOnly",
+                "createOption": "FromImage",
+                "managedDisk": {
+                    "storageAccountType": "StandardSSD_LRS"
+                }
+            },
+            "dataDisks": [
+                {
+                    "diskSizeGB": 128,
+                    "lun": 0,
+                    "createOption": "Empty"
+                }
+                ]
+            },
                 "networkProfile": {
                     "networkInterfaces": [
                         {
