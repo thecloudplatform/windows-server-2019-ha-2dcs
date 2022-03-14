@@ -158,6 +158,17 @@
             }
         },
         {
+            "name": "[parameters('vhdStorageAccountName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-08-01",
+            "location": "[resourceGroup().location]",
+            "properties": {},
+            "sku": {
+                "name": "[parameters('storageAccountType')]"
+            },
+            "kind": "Storage"
+        },
+        {
             "name": "[variables('publicIPAddressName')]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2021-05-01",
