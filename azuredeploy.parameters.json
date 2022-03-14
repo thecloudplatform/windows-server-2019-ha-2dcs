@@ -9,10 +9,10 @@
       "value": "GEN-PASSWORD"
     },
     "dnsPrefix": {
-      "value": "GEN-UNIQUE"
+      "value": "GEN-UNIQUE-8"
     },
     "domainName": {
-      "value": "internal.domain.co.uk"
+      "value": "azure.domain.co.uk"
     }
   }
 }
