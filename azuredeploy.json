@@ -64,6 +64,19 @@
             },
             "defaultValue": "testjaysamstorage"
         },
+        "storageAccountType": {
+            "type": "string",
+            "allowedValues": [
+                "StandardSSD_LRS",
+                "StandardSSD_ZRS",
+                "Premium_LRS",
+                "Premium_ZRS"
+            ],
+            "metadata": {
+                "description": "The type of the Storage Account created"
+            },
+            "defaultValue": "StandardSSD_LRS"
+        },
         "_artifactsLocation": {
             "type": "string",
             "metadata": {
