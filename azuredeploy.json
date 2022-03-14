@@ -382,9 +382,6 @@
                         },
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
-                        "managedDisk": {
-                        "storageAccountType": "StandardSSD_LRS"
-                        },
                     },
                     "dataDisks": [
                         {
@@ -563,9 +560,6 @@
                         },
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
-                        "managedDisk": {
-                        "storageAccountType": "StandardSSD_LRS"
-                        },
                     },
                     "dataDisks": [
                         {
