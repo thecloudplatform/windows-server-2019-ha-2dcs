@@ -363,6 +363,10 @@
                         "version": "latest"
                     },
             "osDisk": {
+                "name": "osdisk",
+                "vhd": {
+                    "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds0/','osdisk.vhd')]"
+                },
                 "caching": "ReadOnly",
                 "createOption": "FromImage",
                 "managedDisk": {
@@ -370,11 +374,16 @@
                 }
             },
             "dataDisks": [
-                {
-                    "diskSizeGB": 128,
+                 {
+                    "vhd": {
+                        "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds0/', variables('adPDCDataDisk'),'-1.vhd')]"
+                    },
+                    "name": "[concat(variables('adPDCVMName'),'-data-disk1')]",
+                    "caching": "None",
+                    "diskSizeGB": "[variables('adDataDiskSize')]",
                     "lun": 0,
                     "createOption": "Empty"
-                }
+                  }
                 ]
             },
                 "networkProfile": {
