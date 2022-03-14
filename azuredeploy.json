@@ -67,15 +67,15 @@
         "storageAccountType": {
             "type": "string",
             "allowedValues": [
-                "StandardSSD_LRS",
-                "StandardSSD_ZRS",
+                "Standard_LRS",
+                "Standard_ZRS",
                 "Premium_LRS",
                 "Premium_ZRS"
             ],
             "metadata": {
                 "description": "The type of the Storage Account created"
             },
-            "defaultValue": "Premium_LRS"
+            "defaultValue": "Standard_LRS"
         },
         "_artifactsLocation": {
             "type": "string",
@@ -382,6 +382,8 @@
                         },
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
+                        "managedDisk": {
+                        "storageAccountType": "StandardSSD_LRS"
                     },
                     "dataDisks": [
                         {
@@ -560,6 +562,8 @@
                         },
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
+                        "managedDisk": {
+                        "storageAccountType": "StandardSSD_LRS"
                     },
                     "dataDisks": [
                         {
