@@ -80,72 +80,38 @@
         "_artifactsLocation": {
             "type": "string",
             "metadata": {
-                "description": "The location of resources, such as templates and DSC modules, that the template depends on"
-            },
-            "defaultValue": "https://raw.githubusercontent.com/thecloudplatform/windows-server-2019-ha-2dcs/master"
-        },
-        "_artifactsLocationSasToken": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Auto-generated token to access _artifactsLocation"
-            },
-            "defaultValue": ""
-        }
-    },
-    "variables": {
-        "adPDCVMName": "DC1",
-        "adBDCVMName": "DC2",
-        "imagePublisher": "MicrosoftWindowsServer",
-        "imageOffer": "WindowsServer",
-        "imageSKU": "2019-Datacenter-GenSecond",
-        "adAvailabilitySetName": "DCAvailabilitySet",
-        "publicIPAddressName": "DCPublicIP",
-        "adVMSize": "Standard_D2s_v3",
-        "adLBFE": "DCLBFE",
-        "adLBBE": "DCLBBE",
-        "adPDCRDPNAT": "DC1RDP",
-        "adBDCRDPNAT": "DC2RDP",
-        "virtualNetworkAddressRange": "10.0.0.0/16",
-        "adSubnetName": "Subnet",
-        "adSubnet": "10.0.0.0/24",
-        "adPDCNicName": "DC1Nic",
-        "adPDCNicIPAddress": "10.0.0.11",
-        "adBDCNicName": "DC2Nic",
-        "adBDCNicIPAddress": "10.0.0.12",
-        "adSubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('adSubnetName'))]",
-        "adLBName": "DCLoadBalancer",
-        "adlbID": "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]",
-        "adlbFEConfigID": "[concat(variables('adlbID'),'/frontendIPConfigurations/',variables('adLBFE'))]",
-        "adPDCRDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('adPDCRDPNAT'))]",
-        "adBDCRDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('adBDCRDPNAT'))]",
-        "adBEAddressPoolID": "[concat(variables('adlbID'),'/backendAddressPools/',variables('adLBBE'))]",
-        "adPDCDataDisk": "DC1DataDisk",
-        "adBDCDataDisk": "DC2DataDisk",
-        "adDataDiskSize": 1000,
-        "vnetTemplateUri": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/vnet.json', parameters('_artifactsLocationSasToken'))]",
-        "nicTemplateUri": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/nic.json', parameters('_artifactsLocationSasToken'))]",
-        "vnetwithDNSTemplateUri": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/vnet-with-dns-server.json', parameters('_artifactsLocationSasToken'))]",
-        "configureADBDCTemplateUri": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/configureADBDC.json', parameters('_artifactsLocationSasToken'))]",
-        "adPDCModulesURL": "[concat(parameters('_artifactsLocation'),'/DSC/CreateADPDC.zip', parameters('_artifactsLocationSasToken'))]",
-        "adPDCConfigurationFunction": "CreateADPDCv2.ps1\\CreateADPDC",
-        "adBDCPreparationModulesURL": "[concat(parameters('_artifactsLocation'),'/DSC/PrepareADBDC.zip', parameters('_artifactsLocationSasToken'))]",
-        "adBDCPreparationFunction": "PrepareADBDC.ps1\\PrepareADBDC",
-        "adBDCConfigurationModulesURL": "[concat(parameters('_artifactsLocation'),'/DSC/ConfigureADBDC.zip', parameters('_artifactsLocationSasToken'))]",
-        "adBDCConfigurationFunction": "ConfigureADBDC.ps1\\ConfigureADBDC",
-        "nsgName": "NSG",
-        "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
-        "subnets": [
-            {
-                "name": "[variables('adSubnetName')]",
-                "properties": {
-                    "addressPrefix": "[variables('adSubnet')]",
-                    "networkSecurityGroup": {
-                        "id": "[variables('nsgID')]"
-                    }
+                        "sku": "[variables('imageSKU')]",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "osdisk",
+                        "vhd": {
+                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds0/','osdisk.vhd')]"
+                        },
+                        "caching": "ReadWrite",
+                        "createOption": "FromImage"
+                    },
+                    "dataDisks": [
+                        {
+                            "vhd": {
+                                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds0/', variables('adPDCDataDisk'),'-1.vhd')]"
+                            },
+                            "name": "[concat(variables('adPDCVMName'),'-data-disk1')]",
+                            "caching": "None",
+                            "diskSizeGB": "[variables('adDataDiskSize')]",
+                            "lun": 0,
+                            "createOption": "empty"
+                        }
+                    ]
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('adPDCNicName'))]"
+                        }
+                    ]
                 }
-            }
-        ]
-    },
+            },
     "resources": [
         {
             "name": "[variables('nsgName')]",
