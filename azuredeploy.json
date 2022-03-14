@@ -41,7 +41,7 @@
             "metadata": {
                 "description": "The DNS prefix for the public IP address used by the Load Balancer"
             },
-            "defaultValue": "dcthedemoplatform"
+            "defaultValue": "thedemoplatform"
         },
         "pdcRDPPort": {
             "type": "int",
@@ -151,7 +151,7 @@
             "name": "[variables('nsgName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2015-06-15",
+            "apiVersion": "2021-05-01",
             "properties": {
                 "securityRules": [
                     {
@@ -173,7 +173,7 @@
         {
             "name": "[parameters('vhdStorageAccountName')]",
             "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2016-05-01",
+            "apiVersion": "2021-08-01",
             "location": "[resourceGroup().location]",
             "properties": {},
             "sku": {
@@ -184,7 +184,7 @@
         {
             "name": "[variables('publicIPAddressName')]",
             "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2016-10-01",
+            "apiVersion": "2021-05-01",
             "location": "[resourceGroup().location]",
             "properties": {
                 "publicIPAllocationMethod": "Dynamic",
@@ -196,13 +196,13 @@
         {
             "name": "[variables('adAvailabilitySetName')]",
             "type": "Microsoft.Compute/availabilitySets",
-            "apiVersion": "2016-03-30",
+            "apiVersion": "2021-11-01",
             "location": "[resourceGroup().location]"
         },
         {
             "name": "VNet",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2016-09-01",
+            "apiVersion": "2021-04-01",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -228,7 +228,7 @@
         {
             "name": "[variables('adLBName')]",
             "type": "Microsoft.Network/loadBalancers",
-            "apiVersion": "2016-10-01",
+            "apiVersion": "2021-05-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
@@ -280,7 +280,7 @@
         {
             "name": "[variables('adPDCNicName')]",
             "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2016-10-01",
+            "apiVersion": "2021-05-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "Microsoft.Resources/deployments/VNet",
@@ -314,7 +314,7 @@
         {
             "name": "[variables('adBDCNicName')]",
             "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2016-10-01",
+            "apiVersion": "2021-05-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "Microsoft.Resources/deployments/VNet",
@@ -348,7 +348,7 @@
         {
             "name": "[variables('adPDCVMName')]",
             "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2016-03-30",
+            "apiVersion": "2021-11-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts',parameters('vhdStorageAccountName'))]",
@@ -408,7 +408,7 @@
                 {
                     "name": "CreateADForest",
                     "type": "extensions",
-                    "apiVersion": "2016-03-30",
+                    "apiVersion": "2021-11-01",
                     "location": "[resourceGroup().location]",
                     "dependsOn": [
                         "[resourceId('Microsoft.Compute/virtualMachines', variables('adPDCVMName'))]"
@@ -442,7 +442,7 @@
         {
             "name": "UpdateVNetDNS1",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2016-09-01",
+            "apiVersion": "2021-04-01",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('adPDCVMName'),'/extensions/CreateADForest')]"
             ],
@@ -476,7 +476,7 @@
         {
             "name": "UpdateBDCNIC",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2015-01-01",
+            "apiVersion": "2021-04-01",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/',variables('adBDCNicName'))]",
                 "Microsoft.Resources/deployments/UpdateVNetDNS1"
@@ -526,7 +526,7 @@
         {
             "name": "[variables('adBDCVMName')]",
             "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2016-03-30",
+            "apiVersion": "2021-11-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts',parameters('vhdStorageAccountName'))]",
@@ -586,7 +586,7 @@
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "name": "[concat(variables('adBDCVMName'),'/PrepareBDC')]",
-            "apiVersion": "2016-03-30",
+            "apiVersion": "2021-11-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('adBDCVMName'))]"
@@ -608,7 +608,7 @@
         {
             "name": "ConfiguringBackupADDomainController",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2016-09-01",
+            "apiVersion": "2021-04-01",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/',variables('adBDCVMName'),'/extensions/PrepareBDC')]",
                 "Microsoft.Resources/deployments/UpdateBDCNIC"
@@ -647,7 +647,7 @@
         {
             "name": "UpdateVNetDNS2",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2016-09-01",
+            "apiVersion": "2021-04-01",
             "dependsOn": [
                 "Microsoft.Resources/deployments/ConfiguringBackupADDomainController"
             ],
