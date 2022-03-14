@@ -82,7 +82,7 @@
             "metadata": {
                 "description": "The location of resources, such as templates and DSC modules, that the template depends on"
             },
-            "defaultValue": "https://raw.githubusercontent.com/thecloudplatform/windows-server-2016-ha-2dcs/master"
+            "defaultValue": "https://raw.githubusercontent.com/thecloudplatform/windows-server-2019-ha-2dcs/master"
         },
         "_artifactsLocationSasToken": {
             "type": "securestring",
@@ -100,7 +100,7 @@
         "imageSKU": "2019-Datacenter-GenSecond",
         "adAvailabilitySetName": "DCAvailabilitySet",
         "publicIPAddressName": "DCPublicIP",
-        "adVMSize": "Standard_DS2_v3",
+        "adVMSize": "Standard_D2_v3",
         "adLBFE": "DCLBFE",
         "adLBBE": "DCLBBE",
         "adPDCRDPNAT": "DC1RDP",
