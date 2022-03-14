@@ -20,28 +20,28 @@
             "metadata": {
                 "description": "The FQDN of the AD Domain created "
             },
-            "defaultValue": "internal.thedemoplatform.co.uk"
+            "defaultValue": "test.jaysam.co.uk"
         },
         "DomainNetBIOSName": {
             "type": "string",
             "metadata": {
                 "description": "The NetBIOS of the AD Domain created (max 15 characters)"
             },
-            "defaultValue": "thedemoplatform"
+            "defaultValue": "testjaysam"
         },
         "virtualNetworkName": {
             "type": "string",
             "metadata": {
                 "description": "The VNET of the network created"
             },
-            "defaultValue": "The-Demo-Platform"
+            "defaultValue": "Test-Jaysam"
         },
         "dnsPrefix": {
             "type": "string",
             "metadata": {
                 "description": "The DNS prefix for the public IP address used by the Load Balancer"
             },
-            "defaultValue": "thedemoplatform"
+            "defaultValue": "testjaysam"
         },
         "pdcRDPPort": {
             "type": "int",
@@ -62,7 +62,7 @@
             "metadata": {
                 "description": "The name of the new storage account created to store the VMs disks"
             },
-            "defaultValue": "thedemoplatformstorage"
+            "defaultValue": "testjaysamstorage"
         },
         "storageAccountType": {
             "type": "string",
