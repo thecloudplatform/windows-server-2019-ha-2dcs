@@ -75,7 +75,7 @@
             "metadata": {
                 "description": "The type of the Storage Account created"
             },
-            "defaultValue": "StandardSSD_LRS"
+            "defaultValue": "Premium_LRS"
         },
         "_artifactsLocation": {
             "type": "string",
