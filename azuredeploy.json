@@ -384,6 +384,7 @@
                         "createOption": "FromImage"
                         "managedDisk": {
                         "storageAccountType": "StandardSSD_LRS"
+                        }
                     },
                     "dataDisks": [
                         {
@@ -564,6 +565,7 @@
                         "createOption": "FromImage"
                         "managedDisk": {
                         "storageAccountType": "StandardSSD_LRS"
+                        }
                     },
                     "dataDisks": [
                         {
