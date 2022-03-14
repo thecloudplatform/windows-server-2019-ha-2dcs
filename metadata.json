@@ -3,5 +3,5 @@
   "description": "This template creates 2 new VMs to be AD DCs (primary and backup) for a new Forest and Domain, fixes are: DomainNetBIOSName to reflect domains in internal.domain.co.uk format. Address Typos with items, look at the naming conventions, allow options to be presented within ARM for more user control."
   "summary": "This template creates 2 Azure VMs with AD",
   "githubUsername": "thecloudplatform",
-  "dateUpdated": "2017-04-24"
+  "dateUpdated": "2022-03-14"
 }
