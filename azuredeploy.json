@@ -166,6 +166,9 @@
       "name": "[variables('adAvailabilitySetName')]",
       "type": "Microsoft.Compute/availabilitySets",
       "apiVersion": "2021-11-01",
+      "sku": {
+        "name": "Aligned"
+      },
       "location": "[resourceGroup().location]"
     },
     {
