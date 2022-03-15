@@ -78,6 +78,7 @@
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
     "imageSKU": "2019-Datacenter-GenSecond",
+    "adAvailabilitySetName": "DCAvailabilitySet",
     "publicIPAddressName": "PublicIP",
     "adVMSize": "Standard_D2s_v3",
     "adLBFE": "DCLBFE",
@@ -160,6 +161,12 @@
           "domainNameLabel": "[parameters('dnsPrefix')]"
         }
       }
+    },
+    {
+      "name": "[variables('adAvailabilitySetName')]",
+      "type": "Microsoft.Compute/availabilitySets",
+      "apiVersion": "2021-11-01",
+      "location": "[resourceGroup().location]"
     },
     {
       "name": "VNet",
@@ -314,11 +321,15 @@
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces',variables('adPDCNicName'))]",
+        "[resourceId('Microsoft.Compute/availabilitySets', variables('adAvailabilitySetName'))]",
         "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]"
       ],
       "properties": {
         "hardwareProfile": {
           "vmSize": "[variables('adVMSize')]"
+        },
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('adAvailabilitySetName'))]"
         },
         "osProfile": {
           "computerName": "[variables('adPDCVMName')]",
@@ -482,11 +493,15 @@
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces',variables('adBDCNicName'))]",
+        "[resourceId('Microsoft.Compute/availabilitySets', variables('adAvailabilitySetName'))]",
         "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]"
       ],
       "properties": {
         "hardwareProfile": {
           "vmSize": "[variables('adVMSize')]"
+        },
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('adAvailabilitySetName'))]"
         },
         "osProfile": {
           "computerName": "[variables('adBDCVMName')]",
