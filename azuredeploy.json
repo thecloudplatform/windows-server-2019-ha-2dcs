@@ -88,6 +88,7 @@
     "adAvailabilitySetName": "DCAvailabilitySet",
     "publicIPAddressName": "DCPublicIP",
     "adVMSize": "Standard_D2s_v3",
+    "storageAccountType": "Standard_LRS",
     "adLBFE": "DCLBFE",
     "adLBBE": "DCLBBE",
     "adPDCRDPNAT": "DC1RDP",
@@ -156,6 +157,17 @@
           }
         ]
       }
+    },
+    {
+      "name": "[parameters('vhdStorageAccountName')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-08-01",
+      "location": "[resourceGroup().location]",
+      "properties": {},
+      "sku": {
+        "name": "[variable('storageAccountType')]"
+      },
+      "kind": "Storage"
     },
     {
       "name": "[variables('publicIPAddressName')]",
