@@ -169,6 +169,10 @@
       "sku": {
         "name": "Aligned"
       },
+      "properties": {
+        "platformUpdateDomainCount": 1,
+        "platformFaultDomainCount": 1
+      },
       "location": "[resourceGroup().location]"
     },
     {
