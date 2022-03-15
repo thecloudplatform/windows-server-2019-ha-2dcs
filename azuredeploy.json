@@ -99,8 +99,6 @@
     "adPDCRDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('adPDCRDPNAT'))]",
     "adBDCRDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('adBDCRDPNAT'))]",
     "adBEAddressPoolID": "[concat(variables('adlbID'),'/backendAddressPools/',variables('adLBBE'))]",
-    "adPDCDataDisk": "DC1DataDisk",
-    "adBDCDataDisk": "DC2DataDisk",
     "adDataDiskSize": 1024,
     "vnetTemplateUri": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/vnet.json', parameters('_artifactsLocationSasToken'))]",
     "nicTemplateUri": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/nic.json', parameters('_artifactsLocationSasToken'))]",
@@ -528,7 +526,7 @@
             "version": "latest"
           },
           "osDisk": {
-            "name": "[concat(variables('adPDCVMName'),'-SYSTEM-Disk1')]",
+            "name": "[concat(variables('adBDCVMName'),'-SYSTEM-Disk1')]",
             "caching": "ReadOnly",
             "createOption": "FromImage",
             "managedDisk": {
@@ -537,7 +535,7 @@
           },
           "dataDisks": [
             {
-              "name": "[concat(variables('adPDCVMName'),'-DATA-Disk1')]",
+              "name": "[concat(variables('adBDCVMName'),'-DATA-Disk1')]",
               "caching": "None",
               "diskSizeGB": "[variables('adDataDiskSize')]",
               "lun": 0,
