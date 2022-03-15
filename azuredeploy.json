@@ -165,7 +165,7 @@
       "location": "[resourceGroup().location]",
       "properties": {},
       "sku": {
-        "name": "[variable('storageAccountType')]"
+        "name": "[variables('storageAccountType')]"
       },
       "kind": "Storage"
     },
