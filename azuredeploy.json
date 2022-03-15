@@ -165,6 +165,7 @@
     {
       "name": "[variables('adAvailabilitySetName')]",
       "type": "Microsoft.Compute/availabilitySets",
+      "location": "[resourceGroup().location]",
       "apiVersion": "2021-11-01",
       "sku": {
         "name": "Aligned"
@@ -172,8 +173,7 @@
       "properties": {
         "platformUpdateDomainCount": 1,
         "platformFaultDomainCount": 1
-      },
-      "location": "[resourceGroup().location]"
+      }
     },
     {
       "name": "VNet",
