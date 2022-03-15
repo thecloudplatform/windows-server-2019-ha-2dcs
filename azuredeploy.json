@@ -88,7 +88,6 @@
     "adAvailabilitySetName": "DCAvailabilitySet",
     "publicIPAddressName": "DCPublicIP",
     "adVMSize": "Standard_D2s_v3",
-    "storageAccountType": "Standard_LRS",
     "adLBFE": "DCLBFE",
     "adLBBE": "DCLBBE",
     "adPDCRDPNAT": "DC1RDP",
@@ -165,7 +164,7 @@
       "location": "[resourceGroup().location]",
       "properties": {},
       "sku": {
-        "name": "[variables('storageAccountType')]"
+        "name": "Standard_LRS"
       },
       "kind": "Storage"
     },
