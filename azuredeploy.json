@@ -57,13 +57,6 @@
       },
       "defaultValue": 23389
     },
-    "vhdStorageAccountName": {
-      "type": "string",
-      "metadata": {
-        "description": "The name of the new storage account created to store the VMs disks"
-      },
-      "defaultValue": "testjaysamstorage"
-    },
     "_artifactsLocation": {
       "type": "string",
       "metadata": {
@@ -156,17 +149,6 @@
           }
         ]
       }
-    },
-    {
-      "name": "[parameters('vhdStorageAccountName')]",
-      "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-08-01",
-      "location": "[resourceGroup().location]",
-      "properties": {},
-      "sku": {
-        "name": "Standard_LRS"
-      },
-      "kind": "Storage"
     },
     {
       "name": "[variables('publicIPAddressName')]",
@@ -338,7 +320,6 @@
       "apiVersion": "2021-11-01",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts',parameters('vhdStorageAccountName'))]",
         "[resourceId('Microsoft.Network/networkInterfaces',variables('adPDCNicName'))]",
         "[resourceId('Microsoft.Compute/availabilitySets', variables('adAvailabilitySetName'))]",
         "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]"
@@ -363,22 +344,14 @@
             "version": "latest"
           },
           "osDisk": {
-            "name": "osdisk",
-            "vhd": {
-              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds0/','osdisk.vhd')]"
-            },
-            "caching": "ReadWrite",
+            "caching": "ReadOnly",
             "createOption": "FromImage",
             "managedDisk": {
-              "storageAccountType": "Standard_LRS"
+              "storageAccountType": "StandardSSD_LRS"
             }
           },
           "dataDisks": [
             {
-              "vhd": {
-                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds0/', variables('adPDCDataDisk'),'-1.vhd')]"
-              },
-              "name": "[concat(variables('adPDCVMName'),'-data-disk1')]",
               "caching": "None",
               "diskSizeGB": "[variables('adDataDiskSize')]",
               "lun": 0,
@@ -519,7 +492,6 @@
       "apiVersion": "2021-11-01",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts',parameters('vhdStorageAccountName'))]",
         "[resourceId('Microsoft.Network/networkInterfaces',variables('adBDCNicName'))]",
         "[resourceId('Microsoft.Compute/availabilitySets', variables('adAvailabilitySetName'))]",
         "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]"
@@ -544,22 +516,14 @@
             "version": "latest"
           },
           "osDisk": {
-            "name": "osdisk",
-            "vhd": {
-              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds1/','osdisk.vhd')]"
-            },
-            "caching": "ReadWrite",
+            "caching": "ReadOnly",
             "createOption": "FromImage",
             "managedDisk": {
-              "storageAccountType": "Standard_LRS"
+              "storageAccountType": "StandardSSD_LRS"
             }
           },
           "dataDisks": [
             {
-              "vhd": {
-                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('vhdStorageAccountName'))).primaryEndpoints.blob,'vhds1/',variables('adBDCDataDisk'),'-1.vhd')]"
-              },
-              "name": "[concat(variables('adBDCVMName'),'-data-disk1')]",
               "caching": "None",
               "diskSizeGB": "[variables('adDataDiskSize')]",
               "lun": 0,
