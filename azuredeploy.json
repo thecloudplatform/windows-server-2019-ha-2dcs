@@ -368,7 +368,7 @@
             },
             "protectedSettings": {
               "Items": {
-                "adminpassword": "[parameters('adminPassword')]"
+                "adminPassword": "[parameters('adminPassword')]"
               }
             }
           }
