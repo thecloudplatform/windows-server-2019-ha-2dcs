@@ -360,11 +360,7 @@
               "ConfigurationFunction": "[variables('adPDCConfigurationFunction')]",
               "Properties": {
                 "DomainName": "[parameters('domainName')]",
-                "DomainNetBIOSName": "[parameters('DomainNetBIOSName')]",
-                "AdminCreds": {
-                  "UserName": "[parameters('adminUserName')]",
-                  "Password": "PrivateSettingsRef:AdminPassword"
-                }
+                "DomainNetBIOSName": "[parameters('DomainNetBIOSName')]"
               }
             },
             "protectedSettings": {
@@ -540,11 +536,7 @@
           "ModulesUrl": "[variables('adBDCPreparationModulesURL')]",
           "ConfigurationFunction": "[variables('adBDCPreparationFunction')]",
           "Properties": {
-            "DNSServer": "[variables('adPDCNicIPAddress')]",
-            "AdminCreds": {
-              "UserName": "[parameters('adminUserName')]",
-              "Password": "PrivateSettingsRef:AdminPassword"
-            }
+            "DNSServer": "[variables('adPDCNicIPAddress')]"
           }
         },
         "protectedSettings": {
