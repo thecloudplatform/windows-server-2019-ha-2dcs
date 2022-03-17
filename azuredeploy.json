@@ -369,6 +369,7 @@
               }
             },
             "protectedSettings": {
+              "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]",
               "Items": {
                 "adminPassword": "[parameters('adminPassword')]"
               }
@@ -546,7 +547,8 @@
           }
         },
         "protectedSettings": {
-          "adminCreds": {
+          "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]",
+          "AdminCreds": {
             "adminPassword": "[parameters('adminPassword')]"
           }
         }
