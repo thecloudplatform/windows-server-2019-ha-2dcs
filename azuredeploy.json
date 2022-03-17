@@ -548,7 +548,7 @@
         },
         "protectedSettings": {
           "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]",
-          "AdminCreds": {
+          "Items": {
             "adminPassword": "[parameters('adminPassword')]"
           }
         }
