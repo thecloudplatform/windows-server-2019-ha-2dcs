@@ -360,6 +360,8 @@
               "ModulesUrl": "[variables('adPDCModulesURL')]",
               "ConfigurationFunction": "[variables('adPDCConfigurationFunction')]",
               "Properties": {
+                "DomainName": "[parameters('domainName')]",
+                "DomainNetBIOSName": "[parameters('DomainNetBIOSName')]",
                 "AdminCreds": {
                   "UserName": "[parameters('adminUsername')]",
                   "Password": "PrivateSettingsRef:adminPassword"
