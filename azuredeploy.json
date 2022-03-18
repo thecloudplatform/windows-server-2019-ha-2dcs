@@ -1,4 +1,4 @@
-{
+ {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -360,23 +360,20 @@
               "ModulesUrl": "[variables('adPDCModulesURL')]",
               "ConfigurationFunction": "[variables('adPDCConfigurationFunction')]",
               "Properties": {
-                "DomainName": "[parameters('domainName')]",
-                "DomainNetBIOSName": "[parameters('DomainNetBIOSName')]",
-                "AdminCreds": {
-                  "UserName": "[parameters('adminUsername')]",
-                  "Password": "PrivateSettingsRef:adminPassword"
+                "DomainName": "[parameters('DomainName')]",
+                "DomainNetBIOSName": "[parameters('DomainNetBIOSName')]"
                 }
               }
             },
             "protectedSettings": {
               "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]",
-              "Items": {
-                "adminPassword": "[parameters('adminPassword')]"
+              "Admincreds": {
+                "UserName": "[parameters('adminUsername')]",
+                "Password": "[parameters('adminPassword')]"
               }
             }
           }
-        }
-      ]
+              ]
     },
     {
       "name": "UpdateVNetDNS1",
@@ -539,17 +536,15 @@
           "ModulesUrl": "[variables('adBDCPreparationModulesURL')]",
           "ConfigurationFunction": "[variables('adBDCPreparationFunction')]",
           "Properties": {
-            "DNSServer": "[variables('adPDCNicIPAddress')]",
-            "AdminCreds": {
-              "UserName": "[parameters('adminUsername')]",
-              "Password": "PrivateSettingsRef:adminPassword"
-            }
+            "DomainName": "[parameters('DomainName')]",
+            "DNSServer": "[variables('adPDCNicIPAddress')]"
           }
         },
         "protectedSettings": {
           "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]",
-          "Items": {
-            "adminPassword": "[parameters('adminPassword')]"
+          "Admincreds": {
+            "UserName": "[parameters('adminUsername')]",
+            "Password": "[parameters('adminPassword')]"
           }
         }
       }
